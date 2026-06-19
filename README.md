@@ -182,8 +182,8 @@ EPOCHS = 80
 ```
 
 ```python
-# Inicialización
-# Callbacks adicionales
+# Initialization
+# Additional Callbacks
 
 model = ArthritisDetectionModel(class_Names = ['0Normal', '1Doubtful', '2Mild', '3Moderate', '4Severe'], save_dir=save_dir)
 ```
@@ -202,8 +202,8 @@ custom_cb = LearningRateScheduler(lr_schedule)
 ```
 
 ```python
-# 2. Entrenar modelo
-# Entrenamiento con callbacks preconfigurados + personalizados
+# 2. Train model
+# Training with preconfigured + custom callbacks
 history = model.train(
     X_train, y_train,
     X_val=X_val,
@@ -218,20 +218,21 @@ history = model.train(
 
 ModelSerializer.save(model, "./export/best_model_efficient_net/")
 
-# 3. Evaluar
+# 3. Evaluate
 
 loaded_model = ModelSerializer.load('./best_model_efficient_net.keras')
 
 results = loaded_model.evaluate(X_test, y_test)
 
 
-# 4. Usar para predicciones
-sample_images = X_test[:5]  # 5 imágenes de ejemplo
+# 4. Use for predictions
+sample_images = X_test[:5]  
+# 5 example images
 predictions = loaded_model.predict(sample_images)
 
 
 loaded_model.monitor.get_tensorboard_cmd()
-# Usa la ruta exacta que imprimiste anteriormente
+# Use the exact path you printed earlier
 !kill 26471
 
 %reload_ext tensorboard
